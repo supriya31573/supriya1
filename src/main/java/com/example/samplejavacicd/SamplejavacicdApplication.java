@@ -15,7 +15,7 @@ public class SamplejavacicdApplication {
 	}
 	@GetMapping("/hello")
 	public String hello() {
-		return "Hello, welcome to DevOps project!";
+		return "Hello, welcome to simple DevOps project!";
 	}
 
 }
