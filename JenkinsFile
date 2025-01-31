@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/supriya31573/supriya1/tree/testjava'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    docker.build("goginenisupriya999/java-devops-demo:${env.BUILD_ID}")
+                }
+            }
+        }
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+                        docker.image("goginenisupriya999/java-devops-demo:${env.BUILD_ID}").push()
+                    }
+                }
+            }
+        }
+    }
+}
