@@ -1,6 +1,12 @@
 pipeline {
     agent any
     stages {
+        stage('Test Docker') {
+            steps {
+                sh 'docker --version'  // Check Docker version
+                sh 'docker ps'         // List running containers
+            }
+        }
         stage('Checkout') {
             steps {
                 git branch: 'testjava', url: 'https://github.com/supriya31573/supriya1.git'
