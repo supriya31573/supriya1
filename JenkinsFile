@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/supriya31573/supriya1/tree/testjava'
+                git branch: 'testjava', url: 'https://github.com/supriya31573/supriya1.git'
             }
         }
         stage('Build') {
