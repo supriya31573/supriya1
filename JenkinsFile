@@ -6,9 +6,9 @@ pipeline {
                 git branch: 'testjava', url: 'https://github.com/supriya31573/supriya1.git'
             }
         }
-        stage('Build') {
+        stage('Build with Maven Docker') {
             steps {
-                sh 'mvn clean package'
+                sh 'docker run --rm -v $(pwd):/app -w /app maven:3.8.4 mvn clean package'
             }
         }
         stage('Test') {
