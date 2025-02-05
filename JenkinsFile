@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('Test Docker') {
             steps {
+                sh 'sudo chmod 666 /var/run/docker.sock'  // Grant Docker access
                 sh 'docker --version'  // Check Docker version
                 sh 'docker ps'         // List running containers
             }
